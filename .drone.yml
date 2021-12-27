@@ -14,12 +14,11 @@ steps:
         from_secret: user
       key:
         from_secret: pwd
-      port: 22
+      port:
+        from_secret: port
       script:
         - cd /root/copo_otp
         - git pull
-        - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/copo_otp_api api/otp.go
-        - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/copo_otp_rpc rpc/otp.go
 trigger:
   branch:
     - master
