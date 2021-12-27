@@ -19,6 +19,8 @@ steps:
     script:
       - cd /root/copo_otp
       - git pull
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/copo_otp_api api/otp.go
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/copo_otp_rpc rpc/otp.go
     when:
       branch:
       - master
