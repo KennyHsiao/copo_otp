@@ -16,9 +16,11 @@ steps:
         from_secret: pwd
       port:
         from_secret: port
-    script:
-      - cd /root/copo_otp
-      - git pull
+      script:
+        - cd /root/copo_otp
+        - git pull
 trigger:
   branch:
-    - master
+  - master
+  event:
+  - push    
