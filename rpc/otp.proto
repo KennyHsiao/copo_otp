@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package otp;
+
+option go_package = "./otp";
+
+message OtpGenRequest {
+  string issuer = 1;
+  string account = 2;
+}
+
+message OtpGenResponse {
+  string code = 1;
+  string message = 2;
+  OtpData data = 3;
+}
+
+message OtpData {
+  string secret = 1;
+  string qrcode = 2;
+}
+
+message OtpVaildRequest{
+  string passCode = 1;
+  string secret = 2;
+}
+
+message OtpVaildResponse{
+  bool vaild = 1;
+}
+
+service Otp {
+  rpc GenOtp(OtpGenRequest) returns(OtpGenResponse);
+  rpc Validate(OtpVaildRequest) returns(OtpVaildResponse);
+
+}

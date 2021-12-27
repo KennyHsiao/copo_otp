@@ -1,0 +1,40 @@
+syntax = "v1"
+
+type (
+	OtpGenReq {
+		Issuer  string `json:"issuer"`
+		Account string `json:"account"`
+	}
+
+	OtpGenReply {
+		Code    string  `json:"code"`
+		Message string  `json:"message"`
+		Data    OtpData `json:"data,omitempty"`
+	}
+
+	OtpData {
+		Secret string `json:"secret"`
+		Qrcode string `json:"qrcode"`
+	}
+
+	OtpVaildReq {
+		PassCode string `json:"passCode"`
+		Secret   string `json:"secret"`
+	}
+
+	OtpVaildReply {
+		Vaild bool `json:"vaild"`
+	}
+)
+
+@server(
+	group: role
+	prefix: api/v1/otp
+)
+service otp {
+	@handler genOtp
+	post /gen (OtpGenReq) returns (OtpGenReply)
+	
+	@handler validate
+	post /vaild (OtpVaildReq) returns (OtpVaildReply)
+}
