@@ -3,7 +3,7 @@ name: Copo ci
 
 steps:
   - name: 🛠 [Dev] Build
-    image: golang:1.17.5
+    image: golang
     commands:
       - cd /root/copo_otp
       - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/copo_otp_api api/otp.go
