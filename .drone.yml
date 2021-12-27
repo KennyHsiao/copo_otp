@@ -12,7 +12,7 @@ steps:
       from_secret: host
     username:
       from_secret: user
-    key:
+    password:
       from_secret: pwd
     port:
       from_secret: port
