@@ -5,22 +5,27 @@ clone:
   disable: true
 
 steps:
-  - name: ssh
-    image: appleboy/drone-ssh
-    settings:
-      host:
-        from_secret: host
-      username:
-        from_secret: user
-      key:
-        from_secret: pwd
-      port:
-        from_secret: port
-      script:
-        - cd /root/copo_otp
-        - git pull
+- name: ssh
+  image: appleboy/drone-ssh
+  settings:
+    host:
+      from_secret: host
+    username:
+      from_secret: user
+    key:
+      from_secret: pwd
+    port:
+      from_secret: port
+    script:
+      - cd /root/copo_otp
+      - git pull
+    when:
+      branch:
+      - master
+      event:
+      - push
 trigger:
   branch:
-  - master
+    - master
   event:
-  - push    
+    - push    
