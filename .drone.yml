@@ -28,4 +28,4 @@ trigger:
   branch:
     - master
   event:
-    - push    
+    - push
