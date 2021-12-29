@@ -38,9 +38,9 @@ func GenOtpKey(issuer string, account string) (*Auth, error) {
 		return nil, err
 	}
 
-	fileName := fmt.Sprintf("%x", md5.Sum([]byte(issuer+account+SEED))) +".png"
-	path := "qrcode/"+fileName
-	f, err := os.Create("../"+path)
+	fileName := fmt.Sprintf("%x", md5.Sum([]byte(issuer+account+SEED))) + ".png"
+	path := "qrcode/" + fileName
+	f, err := os.Create(path)
 	if err != nil {
 		return nil, err
 	}
@@ -60,15 +60,15 @@ func GenOtpKey(issuer string, account string) (*Auth, error) {
 	}, nil
 }
 
-func Validate(code string, secret string) (bool) {
-	res, _ :=totp.ValidateCustom(code, secret,
+func Validate(code string, secret string) bool {
+	res, _ := totp.ValidateCustom(code, secret,
 		time.Now().UTC(),
 		totp.ValidateOpts{
-		Period:    30,
-		Skew:      1,
-		Digits:    otp.DigitsSix,
-		Algorithm: otp.AlgorithmSHA256,
-	})
+			Period:    30,
+			Skew:      1,
+			Digits:    otp.DigitsSix,
+			Algorithm: otp.AlgorithmSHA256,
+		})
 
 	return res
 }

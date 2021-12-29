@@ -1,28 +1,30 @@
 kind: pipeline
-name: copo
+name: copo_bo_api
 
 clone:
   disable: true
 
 steps:
-- name: ssh
-  image: appleboy/drone-ssh
-  settings:
-    host:
-      from_secret: host
-    username:
-      from_secret: user
-    password:
-      from_secret: pwd
-    port:
-      from_secret: port
-    script:
-      - cd /root/copo_otp
-      - git pull
-      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/copo_otp_api api/otp.go
-      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/copo_otp_rpc rpc/otp.go
-    when:
-      branch:
-      - master
-      event:
-      - push
+  - name: docker
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: host
+      username:
+        from_secret: user
+      password:
+        from_secret: pwd
+      port:
+        from_secret: port
+      script:
+        - cd /root/copo_otp
+        - git pull
+        - docker-compose down
+        - docker build -t otp_api -f api/Dockerfile .
+        - docker build -t otp_rpc -f rpc/Dockerfile .
+        - docker-compose up -d
+      when:
+        branch:
+          - master
+        event:
+          - push

@@ -1,6 +1,6 @@
 Name: otp.rpc
-ListenOn: 127.0.0.1:8080
+ListenOn: 0.0.0.0:20002
 Etcd:
   Hosts:
-  - 127.0.0.1:2379
+  - 154.222.0.115:2379
   Key: otp.rpc

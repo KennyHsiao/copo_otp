@@ -1,0 +1,18 @@
+version: "2"
+services:
+  api:
+    container_name: otp_api
+    image: otp_api
+    restart: always
+    volumes:
+      - ~/qrcode:/app/qrcode
+    ports:
+      - 20001:20001
+  rpc:
+    container_name: otp_rpc
+    image: otp_rpc
+    restart: always
+    volumes:
+      - ~/qrcode:/app/qrcode
+    ports:
+      - 20002:20002
