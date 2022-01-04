@@ -20,6 +20,8 @@ steps:
         - cd /root/copo_otp
         - git pull
         - docker-compose down
+        - docker rmi $(docker images --filter="reference=otp_rpc" --quiet)
+        - docker rmi $(docker images --filter="reference=otp_api" --quiet)
         - docker build -t otp_api -f api/Dockerfile .
         - docker build -t otp_rpc -f rpc/Dockerfile .
         - docker-compose up -d
