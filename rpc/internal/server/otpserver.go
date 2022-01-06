@@ -5,7 +5,7 @@ package server
 
 import (
 	"context"
-	"github.com/copo888/copo_otp/rpc/optclient"
+	"github.com/copo888/copo_otp/rpc/otpclient"
 
 	"github.com/copo888/copo_otp/rpc/internal/logic"
 	"github.com/copo888/copo_otp/rpc/internal/svc"
@@ -21,12 +21,12 @@ func NewOtpServer(svcCtx *svc.ServiceContext) *OtpServer {
 	}
 }
 
-func (s *OtpServer) GenOtp(ctx context.Context, in *optclient.OtpGenRequest) (*optclient.OtpGenResponse, error) {
+func (s *OtpServer) GenOtp(ctx context.Context, in *otpclient.OtpGenRequest) (*otpclient.OtpGenResponse, error) {
 	l := logic.NewGenOtpLogic(ctx, s.svcCtx)
 	return l.GenOtp(in)
 }
 
-func (s *OtpServer) Validate(ctx context.Context, in *optclient.OtpVaildRequest) (*optclient.OtpVaildResponse, error) {
+func (s *OtpServer) Validate(ctx context.Context, in *otpclient.OtpVaildRequest) (*otpclient.OtpVaildResponse, error) {
 	l := logic.NewValidateLogic(ctx, s.svcCtx)
 	return l.Validate(in)
 }

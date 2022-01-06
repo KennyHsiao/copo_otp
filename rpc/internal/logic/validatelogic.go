@@ -3,7 +3,7 @@ package logic
 import (
 	"context"
 	"github.com/copo888/copo_otp/helper/otpx"
-	"github.com/copo888/copo_otp/rpc/optclient"
+	"github.com/copo888/copo_otp/rpc/otpclient"
 
 	"github.com/copo888/copo_otp/rpc/internal/svc"
 	"github.com/tal-tech/go-zero/core/logx"
@@ -23,9 +23,9 @@ func NewValidateLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Validate
 	}
 }
 
-func (l *ValidateLogic) Validate(in *optclient.OtpVaildRequest) (*optclient.OtpVaildResponse, error) {
+func (l *ValidateLogic) Validate(in *otpclient.OtpVaildRequest) (*otpclient.OtpVaildResponse, error) {
 
-	return &optclient.OtpVaildResponse{
+	return &otpclient.OtpVaildResponse{
 		Vaild: otpx.Validate(in.PassCode, in.Secret),
 	}, nil
 }
