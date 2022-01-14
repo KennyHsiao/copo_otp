@@ -19,6 +19,7 @@ steps:
       script:
         - cd /root/copo_otp
         - git pull
+        - go mod tidy
         - docker-compose down
         - docker rmi $(docker images --filter="reference=otp_rpc" --quiet)
         - docker rmi $(docker images --filter="reference=otp_api" --quiet)
