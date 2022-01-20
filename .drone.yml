@@ -18,6 +18,7 @@ steps:
         from_secret: port
       script:
         - cd /root/copo_otp
+        - git checkout -- .
         - git pull
         - go mod tidy
         - docker-compose down
