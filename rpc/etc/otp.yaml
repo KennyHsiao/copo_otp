@@ -2,5 +2,5 @@ Name: otp.rpc
 ListenOn: 0.0.0.0:20002
 Etcd:
   Hosts:
-  - 172.16.204.115
+  - 154.222.0.115:2379
   Key: otp.rpc
