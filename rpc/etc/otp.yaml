@@ -1,6 +1,6 @@
-Name: otp.rpc
-ListenOn: 0.0.0.0:20002
+Name: ${APP_NAME}
+ListenOn: ${APP_HOST}
 Etcd:
   Hosts:
-  - 154.222.0.115:2379
-  Key: otp.rpc
+  - ${ETCD_HOST}
+  Key: ${ETCD_KEY}
