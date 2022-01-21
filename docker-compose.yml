@@ -11,8 +11,9 @@ services:
   rpc:
     container_name: otp_rpc
     image: otp_rpc
-    ports:
-      - 20002:20002
+    #ports:
+    #  - 20002:20002
+    network_mode: host
     restart: always
     volumes:
       - ~/qrcode:/app/qrcode
