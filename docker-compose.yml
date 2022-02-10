@@ -16,4 +16,4 @@ services:
     network_mode: host
     restart: always
     volumes:
-      - ~/qrcode:/app/qrcode
+      - ~/bo_uploads/qrcode:/app/qrcode
