@@ -6,7 +6,7 @@ import (
 	"github.com/copo888/copo_otp/api/internal/logic/role"
 	"github.com/copo888/copo_otp/api/internal/svc"
 	"github.com/copo888/copo_otp/api/internal/types"
-	"github.com/tal-tech/go-zero/rest/httpx"
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 func ValidateHandler(ctx *svc.ServiceContext) http.HandlerFunc {

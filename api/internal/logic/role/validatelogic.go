@@ -5,7 +5,7 @@ import (
 	"github.com/copo888/copo_otp/api/internal/svc"
 	"github.com/copo888/copo_otp/api/internal/types"
 	"github.com/copo888/copo_otp/helper/otpx"
-	"github.com/tal-tech/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type ValidateLogic struct {
