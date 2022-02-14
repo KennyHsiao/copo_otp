@@ -6,12 +6,11 @@ import (
 	"log"
 )
 
-func main()  {
+func main() {
 
 	account := "yangoo"
 
-	r, err:=otpx.GenOtpKey("copo", account)
-
+	r, err := otpx.GenOtpKey("copo", account)
 	if err != nil {
 		panic(err)
 	}
@@ -25,5 +24,3 @@ func main()  {
 
 	log.Println(valid)
 }
-
-
