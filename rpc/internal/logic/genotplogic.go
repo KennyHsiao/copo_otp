@@ -6,7 +6,7 @@ import (
 	"github.com/copo888/copo_otp/rpc/otpclient"
 
 	"github.com/copo888/copo_otp/rpc/internal/svc"
-	"github.com/tal-tech/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type GenOtpLogic struct {

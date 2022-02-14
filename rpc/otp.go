@@ -11,9 +11,9 @@ import (
 	"github.com/copo888/copo_otp/rpc/internal/svc"
 	"github.com/copo888/copo_otp/rpc/otp"
 
-	"github.com/tal-tech/go-zero/core/conf"
-	"github.com/tal-tech/go-zero/core/service"
-	"github.com/tal-tech/go-zero/zrpc"
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/core/service"
+	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -31,7 +31,7 @@ func main() {
 	}
 
 	var c config.Config
-	conf.MustLoad(*configFile, &c,  conf.UseEnv())
+	conf.MustLoad(*configFile, &c, conf.UseEnv())
 	ctx := svc.NewServiceContext(c)
 	srv := server.NewOtpServer(ctx)
 
