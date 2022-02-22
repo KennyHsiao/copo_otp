@@ -1,5 +1,12 @@
 Name: ${APP_NAME}
 ListenOn: ${APP_HOST}
+
+Telemetry:
+  Name: ${APP_NAME}
+  Endpoint: ${TRACE_ENDPOINT}
+  Sampler: 1.0
+  Batcher: jaeger
+
 Etcd:
   Hosts:
   - ${ETCD_HOST}

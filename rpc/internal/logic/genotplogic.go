@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/copo888/copo_otp/helper/otpx"
 	"github.com/copo888/copo_otp/rpc/otpclient"
+	"go.opentelemetry.io/otel/trace"
 
 	"github.com/copo888/copo_otp/rpc/internal/svc"
 	"github.com/zeromicro/go-zero/core/logx"
@@ -25,6 +26,14 @@ func NewGenOtpLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GenOtpLogi
 
 func (l *GenOtpLogic) GenOtp(in *otpclient.OtpGenRequest) (*otpclient.OtpGenResponse, error) {
 	auth, err := otpx.GenOtpKey(in.Issuer, in.Account)
+
+	span := trace.SpanFromContext(l.ctx)
+
+	defer span.End()
+
+	_, child := span.TracerProvider().Tracer("opt_test").Start(l.ctx, "tttt")
+
+	defer child.End()
 
 	if err != nil {
 		return &otpclient.OtpGenResponse{
