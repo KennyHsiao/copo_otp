@@ -3,13 +3,8 @@ package logic
 import (
 	"context"
 	"github.com/copo888/copo_otp/helper/otpx"
-	"github.com/copo888/copo_otp/rpc/otpclient"
-	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/trace"
-	"reflect"
-	"runtime"
-
 	"github.com/copo888/copo_otp/rpc/internal/svc"
+	"github.com/copo888/copo_otp/rpc/otpclient"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -30,17 +25,15 @@ func NewGenOtpLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GenOtpLogi
 func (l *GenOtpLogic) GenOtp(in *otpclient.OtpGenRequest) (*otpclient.OtpGenResponse, error) {
 	auth, err := otpx.GenOtpKey(in.Issuer, in.Account)
 
-	span := trace.SpanFromContext(l.ctx)
-	defer span.End()
-
-	var child trace.Span
-	l.ctx, child = span.TracerProvider().Tracer(l.svcCtx.Config.Name).Start(l.ctx, runtime.FuncForPC(reflect.ValueOf(l.GenOtp).Pointer()).Name())
-	defer child.End()
-
-	child.SetAttributes(attribute.KeyValue{
-		Key:   "ccc",
-		Value: attribute.StringValue("QQQQQ"),
-	})
+	//span := trace.SpanFromContext(l.ctx)
+	//
+	//log.Println(">>>>>>>>",auth, span.SpanContext().TraceID(), span.SpanContext().SpanID())
+	//span := trace.SpanFromContext(l.ctx)
+	//defer span.End()
+	//span.SetAttributes(attribute.KeyValue{
+	//	Key:   "ccc",
+	//	Value: attribute.StringValue("QQQQQ"),
+	//})
 
 	if err != nil {
 		return &otpclient.OtpGenResponse{

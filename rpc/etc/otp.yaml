@@ -7,6 +7,11 @@ Telemetry:
   Sampler: 1.0
   Batcher: jaeger
 
+Log:
+  Mode: ${LOG_MODE}
+  Level: ${LOG_LEVEL}
+  KeepDays: ${LOG_KEEP_DAYS}
+
 Etcd:
   Hosts:
   - ${ETCD_HOST}
