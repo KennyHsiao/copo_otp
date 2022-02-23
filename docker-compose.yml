@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
       - ~/qrcode:/app/qrcode
+      - /root/copo_otp/logs:/app/logs
     ports:
       - 20001:20001
   rpc:
@@ -17,3 +18,4 @@ services:
     restart: always
     volumes:
       - ~/bo_uploads/qrcode:/app/qrcode
+      - /root/copo_otp/logs:/app/logs

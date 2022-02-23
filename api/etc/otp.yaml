@@ -1,3 +1,8 @@
 Name: ${APP_NAME}
 Host: ${APP_HOST}
 Port: ${APP_PORT}
+
+Log:
+  Mode: ${LOG_MODE}
+  Level: ${LOG_LEVEL}
+  KeepDays: ${LOG_KEEP_DAYS}
