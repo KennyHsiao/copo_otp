@@ -6,6 +6,7 @@ package server
 import (
 	"context"
 	"github.com/copo888/copo_otp/rpc/otpclient"
+	"google.golang.org/grpc/health/grpc_health_v1"
 
 	"github.com/copo888/copo_otp/rpc/internal/logic"
 	"github.com/copo888/copo_otp/rpc/internal/svc"
@@ -19,6 +20,16 @@ func NewOtpServer(svcCtx *svc.ServiceContext) *OtpServer {
 	return &OtpServer{
 		svcCtx: svcCtx,
 	}
+}
+
+func (s *OtpServer) Check(ctx context.Context, req *grpc_health_v1.HealthCheckRequest) (*grpc_health_v1.HealthCheckResponse, error) {
+	return &grpc_health_v1.HealthCheckResponse{
+		Status: grpc_health_v1.HealthCheckResponse_SERVING,
+	}, nil
+}
+
+func (s *OtpServer) Watch(req *grpc_health_v1.HealthCheckRequest, w grpc_health_v1.Health_WatchServer) error {
+	return nil
 }
 
 func (s *OtpServer) GenOtp(ctx context.Context, in *otpclient.OtpGenRequest) (*otpclient.OtpGenResponse, error) {
