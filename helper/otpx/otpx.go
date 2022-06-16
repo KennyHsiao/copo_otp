@@ -5,13 +5,17 @@ import (
 	"crypto/rand"
 	"fmt"
 	"github.com/pquerna/otp"
+	"github.com/pquerna/otp/hotp"
 	"github.com/pquerna/otp/totp"
 	"image/png"
+	"math"
 	"os"
 	"time"
 )
 
 const SEED = "xwqjdi"
+
+
 
 type Auth struct {
 	Code string
@@ -23,10 +27,10 @@ func GenOtpKey(issuer string, account string) (*Auth, error) {
 		Issuer:      issuer,
 		AccountName: account,
 		Period:      30,
-		SecretSize:  20,
+		SecretSize:  10,
 		Secret:      []byte{},
 		Digits:      otp.DigitsSix,
-		Algorithm:   otp.AlgorithmSHA256,
+		Algorithm:   otp.AlgorithmSHA1,
 		Rand:        rand.Reader,
 	})
 	if err != nil {
@@ -61,14 +65,15 @@ func GenOtpKey(issuer string, account string) (*Auth, error) {
 }
 
 func Validate(code string, secret string) bool {
-	res, _ := totp.ValidateCustom(code, secret,
-		time.Now().UTC(),
-		totp.ValidateOpts{
-			Period:    30,
-			Skew:      1,
-			Digits:    otp.DigitsSix,
-			Algorithm: otp.AlgorithmSHA256,
-		})
-
+	//res, _ := totp.ValidateCustom(code, secret,
+	//	time.Now().UTC(),
+	//	totp.ValidateOpts{
+	//		Period:    30,
+	//		Skew:      15,
+	//		Digits:    otp.DigitsSix,
+	//		Algorithm: otp.AlgorithmSHA1,
+	//	})
+	counter := uint64(math.Floor(float64(time.Now().UTC().Unix()) / float64(30)))
+	res := hotp.Validate(code, counter, secret)
 	return res
 }
