@@ -1,0 +1,35 @@
+kind: pipeline
+name: copo_bo_api
+
+clone:
+  disable: true
+
+steps:
+  - name: docker
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        - 172.28.222.65
+        - 172.28.164.3
+      username:
+        from_secret: user
+      password:
+        from_secret: pwd
+      port:
+        from_secret: port
+      script:
+        - cd /root/copo_otp
+        - git checkout -- .
+        - git pull
+        - go mod tidy
+        - docker-compose down
+        - docker rmi $(docker images --filter="reference=otp_rpc" --quiet)
+        - docker rmi $(docker images --filter="reference=otp_api" --quiet)
+        - docker build -t otp_api -f api/Dockerfile .
+        - docker build -t otp_rpc -f rpc/Dockerfile .
+        - docker-compose up -d
+      when:
+        branch:
+          - master
+        event:
+          - push
