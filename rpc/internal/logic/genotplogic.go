@@ -34,7 +34,7 @@ func (l *GenOtpLogic) GenOtp(in *otpclient.OtpGenRequest) (*otpclient.OtpGenResp
 	//	Key:   "ccc",
 	//	Value: attribute.StringValue("QQQQQ"),
 	//})
-
+	//TEST
 	if err != nil {
 		return &otpclient.OtpGenResponse{
 			Code:    "1",
