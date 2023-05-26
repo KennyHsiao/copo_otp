@@ -28,7 +28,5 @@ steps:
         - docker build -t otp_rpc -f rpc/Dockerfile .
         - docker-compose up -d
       when:
-        branch:
-          - master
-        event:
-          - push
+        ref:
+          - refs/tags/api01-otp*
