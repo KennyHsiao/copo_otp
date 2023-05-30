@@ -29,6 +29,6 @@ steps:
         - docker-compose up -d
       when:
         branch:
-           - master
-         event:
-           - push
+          - master
+        event:
+          - push
