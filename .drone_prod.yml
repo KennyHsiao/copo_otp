@@ -47,7 +47,7 @@ steps:
       - refs/tags/api02-otp*
       - refs/tags/api02-test*
 
-- name: docker-merchant-api01
+- name: docker-otp-api01
   image: appleboy/drone-ssh
   settings:
     host:
@@ -78,7 +78,7 @@ steps:
     status:
       - success
 
-- name: docker-merchant-api02
+- name: docker-otp-api02
   image: appleboy/drone-ssh
   settings:
     host:
