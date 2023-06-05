@@ -24,8 +24,8 @@ steps:
       - ./api01-before.sh
   when:
     ref:
-      - refs/tags/api01-otp*
-      - refs/tags/api01-test*
+      - refs/tags/api01-otp-*
+      - refs/tags/api01-test-*
 
 - name: slb-before-api02
   image: appleboy/drone-ssh
@@ -44,8 +44,8 @@ steps:
       - ./api02-before.sh
   when:
     ref:
-      - refs/tags/api02-otp*
-      - refs/tags/api02-test*
+      - refs/tags/api02-otp-*
+      - refs/tags/api02-test-*
 
 - name: docker-otp-api01
   image: appleboy/drone-ssh
@@ -73,8 +73,8 @@ steps:
       - docker-compose up -d
   when:
     ref:
-      - refs/tags/api01-otp*
-      - refs/tags/api01-test*
+      - refs/tags/api01-otp-*
+      - refs/tags/api01-test-*
     status:
       - success
 
@@ -104,8 +104,8 @@ steps:
       - docker-compose up -d
   when:
     ref:
-      - refs/tags/api02-otp*
-      - refs/tags/api02-test*
+      - refs/tags/api02-otp-*
+      - refs/tags/api02-test-*
     status:
       - success
 
@@ -126,6 +126,6 @@ steps:
       - ./api-after.sh
   when:
     ref:
-      - refs/tags/api01-otp*
-      - refs/tags/api02-otp*
+      - refs/tags/api01-otp-*
+      - refs/tags/api02-otp-*
       - refs/tags/api-bal*
