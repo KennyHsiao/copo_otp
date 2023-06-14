@@ -1,0 +1,22 @@
+Name: ${APP_NAME}
+ListenOn: ${APP_HOST}
+
+Telemetry:
+  Name: ${APP_NAME}
+  Endpoint: ${TRACE_ENDPOINT}
+  Sampler: 1.0
+  Batcher: jaeger
+
+Log:
+  Mode: ${LOG_MODE}
+  Level: ${LOG_LEVEL}
+  KeepDays: ${LOG_KEEP_DAYS}
+
+Consul:
+  Host: ${CONSUL_HOST}
+  Key: ${CONSUL_KEY}
+  Check: ${CONSUL_CHECK}
+  Meta:
+    Protocol: grpc
+  Tag:
+    - ${CONSUL_KEY}

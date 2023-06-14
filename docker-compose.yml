@@ -1,0 +1,21 @@
+version: "2"
+services:
+  api:
+    container_name: otp_api
+    image: otp_api
+    restart: always
+    volumes:
+      - ~/qrcode:/app/qrcode
+      - /root/copo_otp/logs:/app/logs
+    ports:
+      - 20001:20001
+  rpc:
+    container_name: otp_rpc
+    image: otp_rpc
+    #ports:
+    #  - 20002:20002
+    network_mode: host
+    restart: always
+    volumes:
+      - ~/bo_uploads/qrcode:/app/qrcode
+      - /root/copo_otp/logs:/app/logs
